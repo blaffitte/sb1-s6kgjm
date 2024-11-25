@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo">
+    <ActionBar title="Mon Gestionnaire de Frigo" class="action-bar">
+        <ActionItem ios.position="right" tap="onAddTap">
+            <Label text="+" class="text-2xl font-bold" />
+        </ActionItem>
+    </ActionBar>
+
+    <StackLayout>
+        <ListView items="{{ items }}" itemTap="onItemTap" class="list-group">
+            <ListView.itemTemplate>
+                <StackLayout class="item-card">
+                    <GridLayout columns="*, auto" rows="auto, auto">
+                        <Label text="{{ name }}" class="text-lg font-bold" row="0" col="0"/>
+                        <Label text="{{ category }}" class="text-sm text-gray-500" row="1" col="0"/>
+                        <Label text="{{ quantity }}" class="text-lg" row="0" col="1"/>
+                        <Label text="{{ expiryDate, 'Expire le: ' + 'dd/MM/yyyy' }}" 
+                               class="{{ expiryDate < Date.now() ? 'expired' : '' }}"
+                               row="1" col="1"/>
+                    </GridLayout>
+                </StackLayout>
+            </ListView.itemTemplate>
+        </ListView>
+    </StackLayout>
+</Page>
